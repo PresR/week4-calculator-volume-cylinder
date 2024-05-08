@@ -9,6 +9,11 @@ const app = express();
 // this allows the parsing of the html file using body parser
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Updated route to serve the HTML file
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
 //this sends the html file to the web page using the root directory
 //
 app.get("/VolCalc", function(req, res) {
@@ -22,13 +27,16 @@ app.post("/", function(req, res){
   var num1 = Number(req.body.n1);
   var num2 = Number(req.body.n2);
 
+  // Updated calculation and response for cone height
+  var height = (3 * num2) / (Math.PI * Math.pow(num1, 2)); // calculate height of cone
+
 // does the computation of the input variables, as numbers
-//This is a new comment that is gor GitHub
+
   var volCylinder = Math.PI * Math.pow(num1, 2) * num2;
 
 // sends the results back to the web page as string
-  res.send("The volume of the cylinder is " + volCylinder.toFixed(2));
-})
+ res.send("The height of the cone is " + height.toFixed(2)); // send result back to webpage
+});
 //this gets the response from the web page to this placeholder
 
 app.listen(3000, function() {
