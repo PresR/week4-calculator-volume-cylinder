@@ -9,14 +9,15 @@ const app = express();
 // this allows the parsing of the html file using body parser
 app.use(bodyParser.urlencoded({extended: true}));
 
+//this sends the html file to the web page using the root directory
 // Updated route to serve the HTML file
-app.get("/", function(req, res) {
+app.get("/VolCalc", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
 //this sends the html file to the web page using the root directory
 //
-app.get("/VolCalc", function(req, res) {
+app.get("/", function(req, res) {
   res.sendFile(__dirname + "/VolCalculator.html")
 });
 
